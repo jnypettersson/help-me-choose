@@ -5,14 +5,26 @@ body {
   align-items: center;
   margin-top: 150px;
   background: rgb(238,174,202);
+  transition: all 0.6s ease-in-out;
+}
+
+.specialBackground {
   background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 }
 
-h1 {
+.header-title {
   font-weight: lighter;
   font-size: 40px;
   letter-spacing: 2px;
   margin-bottom: 0px;
+  font-family: "Lucida Console", "Times New Roman";
+  font-style: italic;
+  color: white;
+  cursor: pointer;
+}
+
+.fortune-image {
+  margin-top: 10px;
 }
 
 .inputSection {
@@ -33,6 +45,7 @@ input {
 .addOption {
   margin-top: 10px;
 }
+
 .resultSection {
   height:  300px;
   display: flex;
