@@ -10,12 +10,12 @@
     <img class="fortune-image" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/fortune-cookie_1f960.png" alt="Fortune cookie emoji" height="50" width="50">
     <div class="inputSection">
       <div class="inputs">
-        <input placeholder="Write me a little fortune"></input>
+        <input class="textInput" placeholder="Write me a little fortune"></input>
       </div>
       <button class="addOption">Add</button>
     </div>
     <div class="resultSection"></div>
-    <button class="submit">Give me answers!</button>
+    <button class="submit">Give me an answer!</button>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
@@ -24,19 +24,32 @@
 
     var add_option = function() {
       var inputValue = $('.inputs input:last').val();
+
       if (inputValue) {
-        $('.inputs').append('<input></input>');
+        $('.inputs').append('<input class="textInput"></input>');
       }
 
+      // Focus the last input
+      $('.inputs input:last').focus();
+
     }
+
+    var options = []
+
     $('.addOption').click(add_option)
+
+    $(".inputs").on('keypress', '.textInput', function ( event ) {
+      if ( event.which == 13 ) {
+        options.push($(this).val())
+        add_option()
+      }
+    });
 
     var changeBackground = function() {
       $('body').toggleClass('specialBackground');
     }
     $('.header-title').click(changeBackground);
 
-    var options = []
     var submit = function() {
       $('.inputSection').hide()
       $('.resultSection').css('display', 'flex')
@@ -44,9 +57,8 @@
         options.push($(this).val())
       })
       var winner = options[Math.floor(Math.random() * options.length)]
-      console.log(winner)
       $('.resultSection').text(winner)
-      $('.header-title').text('And the winner is...')
+      $('.header-title').text('Vinnaren är...')
     }
     $('.submit').click(submit)
   })
